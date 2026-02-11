@@ -1,0 +1,28 @@
+{
+  "documents": [
+    {
+      "filename": "n8n-security-vulnerability-report.md",
+      "title": "n8n Security Vulnerability Report",
+      "emoji": "🚨",
+      "category": "Security",
+      "created_at": "2026-01-29",
+      "updated_at": "2026-01-29"
+    },
+    {
+      "filename": "zyga-master-guide.md",
+      "title": "Zyga Master Guide",
+      "emoji": "📘",
+      "category": "Guide",
+      "created_at": "2026-01-29",
+      "updated_at": "2026-02-11"
+    },
+    {
+      "filename": "daily-ai-pulse-jan29.md",
+      "title": "Daily AI Pulse — Jan 29, 2026",
+      "emoji": "📰",
+      "category": "AI Pulse",
+      "created_at": "2026-01-29",
+      "updated_at": "2026-01-29"
+    }
+  ]
+}

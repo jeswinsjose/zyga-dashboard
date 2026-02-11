@@ -1,0 +1,48 @@
+{
+  "deliverables": [
+    {
+      "id": "1",
+      "name": "Daily AI Pulse",
+      "emoji": "🤖",
+      "frequency": "Daily",
+      "type": "folder",
+      "cron_expression": "0 8 * * *",
+      "enabled": true,
+      "last_run": "2026-02-11T08:00:00Z",
+      "description": "Daily briefing on AI industry news and developments"
+    },
+    {
+      "id": "2",
+      "name": "Daily SWOT Analysis",
+      "emoji": "📊",
+      "frequency": "Daily",
+      "type": "folder",
+      "cron_expression": "0 9 * * *",
+      "enabled": true,
+      "last_run": "2026-02-11T09:00:00Z",
+      "description": "Business analysis of opportunities and threats"
+    },
+    {
+      "id": "3",
+      "name": "Security Audits",
+      "emoji": "🔒",
+      "frequency": "Weekly",
+      "type": "folder",
+      "cron_expression": "0 10 * * 1",
+      "enabled": true,
+      "last_run": "2026-02-10T10:00:00Z",
+      "description": "Weekly security vulnerability scan and report"
+    },
+    {
+      "id": "4",
+      "name": "YouTube Audits",
+      "emoji": "🎬",
+      "frequency": "Weekly",
+      "type": "folder",
+      "cron_expression": "0 12 * * 1",
+      "enabled": true,
+      "last_run": "2026-02-10T12:00:00Z",
+      "description": "Weekly YouTube channel analytics and audit"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Zyga Dashboard",
+  "description": "A high-fidelity AI agent dashboard for Zyga, featuring a Kanban board, activity logging, documentation, and system overview.",
+  "requestFramePermissions": []
+}

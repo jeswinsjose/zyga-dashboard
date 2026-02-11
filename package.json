@@ -1,0 +1,44 @@
+{
+  "name": "zyga-dashboard",
+  "version": "1.0.0",
+  "description": "Command center dashboard for the Zyga AI agent on OpenClaw. Real-time monitoring, task management, document editing, activity logging, and operational overview.",
+  "author": "Jeswin",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "keywords": ["dashboard", "ai-agent", "openclaw", "zyga", "monitoring", "kanban", "react", "express"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeswin/zyga-dashboard"
+  },
+  "scripts": {
+    "dev": "vite",
+    "api": "nodemon server/index.js",
+    "api:once": "node server/index.js",
+    "dev:all": "concurrently \"npm run api\" \"npm run dev\"",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@blocknote/core": "^0.46.2",
+    "@blocknote/mantine": "^0.46.2",
+    "@blocknote/react": "^0.46.2",
+    "@mantine/core": "^8.3.14",
+    "@mantine/hooks": "^8.3.14",
+    "@mantine/utils": "^6.0.22",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-markdown": "9",
+    "remark-gfm": "4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.11",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "notes": [
+    {
+      "id": "1",
+      "text": "testing if this works. when you see this, tell me a joke about dinosaurs.",
+      "created_at": "2026-02-11T11:30:00Z",
+      "created_by": "user",
+      "seen_by_zyga": true,
+      "seen_at": "2026-02-11T11:31:00Z"
+    },
+    {
+      "id": "2",
+      "text": "It seems like as you're working on tasks, you're not actually dynamically adding them to the kanban board.",
+      "created_at": "2026-02-11T11:45:00Z",
+      "created_by": "user",
+      "seen_by_zyga": true,
+      "seen_at": "2026-02-11T11:46:00Z"
+    }
+  ]
+}

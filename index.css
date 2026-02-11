@@ -1,0 +1,236 @@
+/* App base styles */
+
+/* ===== Responsive: hide scrollbar on nav ===== */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== Heartbeat button pulse ===== */
+@keyframes heartbeat-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+    border-color: #30363d;
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.5);
+  }
+}
+.heartbeat-pulse-anim {
+  animation: heartbeat-pulse 2s ease-in-out infinite;
+}
+
+/* Heartbeat loading spinner */
+@keyframes heartbeat-spin {
+  to { transform: rotate(360deg); }
+}
+.heartbeat-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #30363d;
+  border-top-color: #8b5cf6;
+  border-radius: 50%;
+  animation: heartbeat-spin 0.6s linear infinite;
+}
+
+/* ===== Kanban drag-and-drop enhancements ===== */
+
+/* Card being dragged */
+.task-card-dragging {
+  opacity: 0.5;
+  transform: rotate(2deg) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(139, 92, 246, 0.4);
+  z-index: 100;
+}
+
+/* Smooth card placement animation */
+@keyframes card-drop {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.card-drop-anim {
+  animation: card-drop 0.25s ease-out;
+}
+
+/* ===== Toast slide-in animation ===== */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+/* ===== Agent Avatar Animations ===== */
+
+/* Working — pulse glow + subtle bounce */
+@keyframes avatar-working {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px rgba(210, 153, 34, 0.5));
+  }
+  50% {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 18px rgba(210, 153, 34, 0.8));
+  }
+}
+
+/* Thinking — breathing + gentle dim */
+@keyframes avatar-thinking {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.97);
+    opacity: 0.75;
+  }
+}
+
+/* Idle — gentle floating bob */
+@keyframes avatar-idle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Sleeping — slow dim + shrink */
+@keyframes avatar-sleeping {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.96);
+  }
+}
+
+/* Error — shake / vibrate */
+@keyframes avatar-error {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-3px); }
+  20% { transform: translateX(3px); }
+  30% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  50% { transform: translateX(-2px); }
+  60% { transform: translateX(2px); }
+  70% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
+  90% { transform: translateX(0); }
+}
+
+/* Executing Cron — spin */
+@keyframes avatar-cron {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Status indicator dot pulse */
+@keyframes pulse-dot {
+  0%, 100% {
+    box-shadow: 0 0 0 0 var(--dot-color, rgba(63, 185, 80, 0.5));
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(63, 185, 80, 0);
+  }
+}
+
+/* Floating Z's for sleeping state */
+@keyframes float-z {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(12px, -28px) scale(1);
+  }
+}
+
+/* Avatar ring glow per state */
+.avatar-ring-working  { box-shadow: 0 0 14px 2px rgba(210, 153, 34, 0.45); }
+.avatar-ring-thinking { box-shadow: 0 0 14px 2px rgba(139, 92, 246, 0.45); }
+.avatar-ring-idle     { box-shadow: 0 0 14px 2px rgba(63, 185, 80, 0.35); }
+.avatar-ring-sleeping { box-shadow: none; }
+.avatar-ring-error    { box-shadow: 0 0 14px 2px rgba(248, 81, 73, 0.5); }
+.avatar-ring-executing_cron { box-shadow: 0 0 14px 2px rgba(88, 166, 255, 0.45); }
+
+/* Avatar emoji animation classes */
+.avatar-anim-working  { animation: avatar-working 2s ease-in-out infinite; }
+.avatar-anim-thinking { animation: avatar-thinking 3s ease-in-out infinite; }
+.avatar-anim-idle     { animation: avatar-idle 3s ease-in-out infinite; }
+.avatar-anim-sleeping { animation: avatar-sleeping 4s ease-in-out infinite; }
+.avatar-anim-error    { animation: avatar-error 0.6s ease-in-out infinite; }
+.avatar-anim-executing_cron { animation: avatar-cron 2s linear infinite; }
+
+/* Status dot animation class */
+.status-dot-pulse {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* Floating Z particle */
+.sleeping-z {
+  position: absolute;
+  font-size: 14px;
+  color: #8b949e;
+  pointer-events: none;
+  animation: float-z 2s ease-out infinite;
+}
+.sleeping-z:nth-child(2) {
+  animation-delay: 0.6s;
+  font-size: 11px;
+}
+.sleeping-z:nth-child(3) {
+  animation-delay: 1.2s;
+  font-size: 9px;
+}
+
+/* BlockNote dark theme overrides - ensure editor matches app (#0d1117) */
+.bn-container[data-blocknote-zyga][data-color-scheme="dark"],
+.bn-container[data-blocknote-zyga] {
+  --bn-colors-editor-text: #c9d1d9;
+  --bn-colors-editor-background: #0d1117;
+  --bn-colors-menu-text: #c9d1d9;
+  --bn-colors-menu-background: #161b22;
+  --bn-colors-tooltip-text: #c9d1d9;
+  --bn-colors-tooltip-background: #161b22;
+  --bn-colors-hovered-text: #fff;
+  --bn-colors-hovered-background: #30363d;
+  --bn-colors-selected-text: #fff;
+  --bn-colors-selected-background: #8b5cf6;
+  --bn-colors-border: #30363d;
+  --bn-colors-side-menu: #8b949e;
+}
+
+/* Align BlockNote content with document header (same left edge) */
+.bn-container[data-blocknote-zyga] .bn-editor {
+  padding-inline-start: 0;
+}
+
+/* Placeholders should not be italicized */
+.bn-container[data-blocknote-zyga] .bn-inline-content:has(> .ProseMirror-trailingBreak):before {
+  font-style: normal !important;
+}
