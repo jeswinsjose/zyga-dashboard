@@ -1,29 +1,102 @@
-**Last Updated**: January 29, 2026
-**Purpose**: Complete reference for how Zyga works, what we've built, and how to get the most out of working together.
+# Zyga Master Guide
 
----
+## Introduction
 
-### Table of Contents
+Zyga is a personal AI dashboard that combines task management, documentation, notes, and AI-powered automation into a single workspace. Think of it as your command center for managing projects, tracking AI agent activities, and keeping documentation organized.
 
-1. Who Zyga Is
-2. Memory System
-3. Access & Capabilities
-4. What We've Built Together
-5. Scheduled Triggers
-6. Communication Channels
+## Architecture
 
----
+# Test Heading Works
 
-### Who Zyga Is
+```text
+```
 
-**Name**: Zyga
-**Role**: Executive AI Assistant
-**Core Directive**: To optimize operations, ensure security, and drive project velocity.
+This is a quote block
 
-### Memory System
+### Frontend (React + Vite)
 
-Zyga utilizes a dual-layer memory architecture:
-1. **Short-term**: Context window retention for immediate tasks.
-2. **Long-term**: Vector database (Pinecone) storing documents, logs, and project specifications.
+* Built with React and TypeScript
 
-To interact with memory, simply ask: "Check the archives for..." or "Do we have a doc on..."
+* Uses TailwindCSS for styling
+
+* Vite as the build tool for fast development
+
+* BlockNote editor for rich document editing
+
+### Backend (Express.js)
+
+* Simple Express server for API endpoints
+
+* File-based storage (JSON + Markdown)
+
+* No database required — all data lives in `data/` directory
+
+### Key Components
+
+* **Dashboard**: Overview with system stats, costs, and agent status
+
+* **Docs**: Markdown document editor with preview mode
+
+* **Notes**: Quick notes and snippets
+
+* **Tasks**: Kanban-style task management
+
+* **Log**: Activity and event logging
+
+* **Overview**: High-level project summary
+
+## Getting Started
+
+1. Install dependencies: `npm install`
+
+2. Start development server: `npm run dev:all`
+
+3. Open `http://localhost:3000`
+
+## File Structure
+
+```text
+zyga-dashboard/
+├── components/     # React components
+├── lib/            # Utility functions
+├── server/         # Express API server
+├── data/           # JSON and Markdown data files
+├── types.ts        # TypeScript types
+└── App.tsx         # Main application entry
+```
+
+## Features
+
+### Document Editor
+
+* Markdown preview with syntax highlighting
+
+* Block-based editing via BlockNote
+
+* Auto-save with debounced writes
+
+* Table of contents generation
+
+* Document categories and emoji icons
+
+### AI Agent Integration
+
+* Real-time agent status monitoring
+
+* Heartbeat checks and uptime tracking
+
+* Cron job execution tracking
+
+* Activity logging
+
+### Task Management
+
+* Kanban board with drag-and-drop
+
+* Task categories and priority levels
+
+* Due date tracking
+
+### jlfjsljs
+
+jsjlsj

@@ -1,6 +1,7 @@
 /**
  * BlockNote ↔ Markdown conversion for document persistence.
  * Uses BlockNote's native converters via a headless editor instance.
+ * NOTE: BlockNote v0.46+ uses async conversion methods.
  */
 
 import { BlockNoteEditor } from '@blocknote/core';
@@ -16,15 +17,16 @@ function getConverterEditor(): BlockNoteEditor {
 }
 
 /** Convert Markdown string to BlockNote PartialBlock[] */
-export function markdownToBlockNote(markdown: string): PartialBlock[] {
+export async function markdownToBlockNote(markdown: string): Promise<PartialBlock[]> {
   const editor = getConverterEditor();
-  const blocks = editor.tryParseMarkdownToBlocks(markdown || '');
+  const blocks = await editor.tryParseMarkdownToBlocks(markdown || '');
   return blocks as PartialBlock[];
 }
 
 /** Convert BlockNote PartialBlock[] to Markdown string */
-export function blockNoteToMarkdown(blocks: PartialBlock[]): string {
+export async function blockNoteToMarkdown(blocks: PartialBlock[]): Promise<string> {
   if (!blocks?.length) return '';
   const editor = getConverterEditor();
-  return editor.blocksToMarkdownLossy(blocks);
+  return await editor.blocksToMarkdownLossy(blocks);
 }
+

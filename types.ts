@@ -53,8 +53,11 @@ export interface Block {
 export interface Doc {
   id: string;
   title: string;
+  emoji?: string;
   date: string;
+  updatedAt?: string;
   category: DocCategory;
+  isFavorite?: boolean;
   content?: string; // Legacy markdown (for migration only)
   /** BlockNote JSON block array - canonical storage format */
   blocks?: import('@blocknote/core').PartialBlock[];

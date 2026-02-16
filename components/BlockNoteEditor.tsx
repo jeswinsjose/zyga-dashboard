@@ -81,7 +81,8 @@ export const BlockNoteEditor: React.FC<BlockNoteEditorProps> = ({
 }) => {
   const onChangeRef = useRef(onChange);
   onChangeRef.current = onChange;
-  const prevDocIdRef = useRef<string | undefined>(undefined);
+  const prevDocIdRef = useRef<string | undefined>(docId);
+  const readyRef = useRef(true); // Start ready — editor is usable immediately after creation
 
   const initialContent: PartialBlock[] =
     !blocks || blocks.length === 0
@@ -92,23 +93,55 @@ export const BlockNoteEditor: React.FC<BlockNoteEditorProps> = ({
 
   const editor = useCreateBlockNote({ initialContent }, [docId]);
 
-  // When doc changes, replace content with new blocks (handles doc switch + initial load with correct blocks)
+  // When doc changes, replace content with new blocks
   useEffect(() => {
-    if (editor && docId && blocks && blocks.length > 0) {
-      const content =
-        isLegacyBlocks(blocks) ? blocksToBlockNote(blocks) : (blocks as PartialBlock[]);
-      if (docId !== prevDocIdRef.current) {
-        prevDocIdRef.current = docId;
+    if (!editor || !docId) return;
+
+    if (docId !== prevDocIdRef.current) {
+      // Doc switched — replace editor content
+      prevDocIdRef.current = docId;
+      readyRef.current = false; // Briefly pause onChange during content swap
+
+      if (blocks && blocks.length > 0) {
+        const content =
+          isLegacyBlocks(blocks) ? blocksToBlockNote(blocks) : (blocks as PartialBlock[]);
         try {
           editor.replaceBlocks(editor.document, content);
         } catch {
           // Ignore during teardown
         }
       }
+
+      // Re-enable onChange after editor settles
+      requestAnimationFrame(() => {
+        readyRef.current = true;
+      });
+    } else if (blocks && blocks.length > 0) {
+      // Same doc, blocks arrived async — check if editor is still empty
+      const isEditorEmpty =
+        editor.document.length === 1 &&
+        Array.isArray(editor.document[0].content) &&
+        editor.document[0].content.length === 0;
+
+      if (isEditorEmpty) {
+        const content =
+          isLegacyBlocks(blocks) ? blocksToBlockNote(blocks) : (blocks as PartialBlock[]);
+        readyRef.current = false;
+        try {
+          editor.replaceBlocks(editor.document, content);
+        } catch {
+          // Ignore during teardown
+        }
+        requestAnimationFrame(() => {
+          readyRef.current = true;
+        });
+      }
     }
   }, [docId, editor, blocks]);
 
   const handleChange = useCallback(() => {
+    // Don't fire during initialization — only after readyRef is set
+    if (!readyRef.current) return;
     if (editor && onChangeRef.current) {
       try {
         const doc = editor.document;
@@ -124,7 +157,7 @@ export const BlockNoteEditor: React.FC<BlockNoteEditorProps> = ({
   if (!editor) return null;
 
   return (
-    <div className="blocknote-editor-wrapper w-full max-w-5xl mx-auto pb-32">
+    <div className="blocknote-editor-wrapper w-full mx-auto pb-32">
       <BlockNoteView
         editor={editor}
         editable={!readOnly}

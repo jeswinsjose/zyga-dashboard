@@ -38,3 +38,6 @@ Desktop.ini
 
 # Lock files (optional — remove this line if you want to commit package-lock.json)
 # package-lock.json
+
+# Version History Snapshots
+.versions/

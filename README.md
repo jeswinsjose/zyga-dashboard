@@ -35,6 +35,9 @@ Zyga's personality lives in the sidebar with 6 animated states:
 
 ### Docs Tab
 - **Notion-style block editor** powered by BlockNote
+- **Version History**: Full revision tracking with author attribution (User vs OpenClaw) and diff previews
+- **Floating TOC**: Notion-style hoverable table of contents for quick navigation
+- **Auto-Sync**: Seamlessly detects external edits (e.g. by OpenClaw agent)
 - Markdown files stored on disk, auto-converted to/from BlockNote format
 - Full WYSIWYG editing with headings, lists, code blocks, quotes, and more
 - Document list with categories and timestamps

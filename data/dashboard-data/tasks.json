@@ -29,30 +29,22 @@
           "created_at": "2026-02-11T10:00:00Z",
           "updated_at": "2026-02-11T10:00:00Z",
           "created_by": "user"
-        },
+        }
+      ]
+    },
+    "archive": {
+      "name": "Archive",
+      "tasks": [
         {
           "id": "2",
           "title": "YouTube Dashboard: Idea Generator",
           "description": "",
           "priority": "medium",
           "created_at": "2026-02-11T10:30:00Z",
-          "updated_at": "2026-02-11T10:30:00Z",
-          "created_by": "user"
-        },
-        {
-          "id": "4",
-          "title": "YouTube Dashboard: OAuth Setup",
-          "description": "",
-          "priority": "high",
-          "created_at": "2026-02-11T11:00:00Z",
-          "updated_at": "2026-02-11T11:00:00Z",
+          "updated_at": "2026-02-16T10:10:53.023Z",
           "created_by": "user"
         }
       ]
-    },
-    "archive": {
-      "name": "Archive",
-      "tasks": []
     }
   }
 }

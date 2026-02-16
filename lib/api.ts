@@ -197,16 +197,93 @@ export async function fetchDocumentContent(filename: string): Promise<string> {
   return res.text();
 }
 
-export async function saveDocumentContent(filename: string, content: string): Promise<void> {
+export async function saveDocumentContent(filename: string, content: string, editedBy?: string): Promise<void> {
   const res = await fetch(`${API_BASE}/documents/${encodeURIComponent(filename)}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ content }),
+    body: JSON.stringify({ content, editedBy }),
   });
   if (!res.ok) throw new Error(`Failed to save document: ${res.status}`);
 }
 
-// --- Activity Log API ---
+
+export async function createDocument(doc: {
+  title: string;
+  emoji?: string;
+  category?: string;
+  content?: string;
+}): Promise<DocumentIndexItem> {
+  const res = await fetch(`${API_BASE}/documents`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(doc),
+  });
+  if (!res.ok) throw new Error(`Failed to create document: ${res.status}`);
+  return res.json();
+}
+
+export async function deleteDocument(filename: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/documents/${encodeURIComponent(filename)}`, {
+    method: 'DELETE',
+  });
+  if (!res.ok && res.status !== 204) throw new Error(`Failed to delete document: ${res.status}`);
+}
+
+export async function updateDocumentMeta(
+  filename: string,
+  meta: { title?: string; emoji?: string; category?: string }
+): Promise<DocumentIndexItem> {
+  const res = await fetch(`${API_BASE}/documents/${encodeURIComponent(filename)}/meta`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(meta),
+  });
+  if (!res.ok) throw new Error(`Failed to update document meta: ${res.status}`);
+  return res.json();
+}
+
+export async function duplicateDocument(filename: string): Promise<DocumentIndexItem> {
+  const res = await fetch(`${API_BASE}/documents/${encodeURIComponent(filename)}/duplicate`, {
+    method: 'POST',
+  });
+  if (!res.ok) throw new Error(`Failed to duplicate document: ${res.status}`);
+  return res.json();
+}
+
+// --- Version History API ---
+
+export interface VersionEntry {
+  timestamp: string;
+  size: number;
+  file: string;
+  author?: string;
+  preview?: string;
+}
+
+export async function fetchVersions(filename: string): Promise<VersionEntry[]> {
+  const res = await fetch(`${API_BASE}/documents/${encodeURIComponent(filename)}/versions`);
+  if (!res.ok) throw new Error(`Failed to fetch versions: ${res.status}`);
+  const data = await res.json();
+  return data.versions || [];
+}
+
+export async function fetchVersionContent(filename: string, versionFile: string): Promise<string> {
+  const res = await fetch(`${API_BASE}/documents/${encodeURIComponent(filename)}/versions/${encodeURIComponent(versionFile)}`);
+  if (!res.ok) throw new Error(`Failed to fetch version content: ${res.status}`);
+  return res.text();
+}
+
+
+
+
+export async function restoreVersion(filename: string, versionFile: string): Promise<string> {
+  const res = await fetch(`${API_BASE}/documents/${encodeURIComponent(filename)}/versions/${encodeURIComponent(versionFile)}/restore`, {
+    method: 'POST',
+  });
+  if (!res.ok) throw new Error(`Failed to restore version: ${res.status}`);
+  const data = await res.json();
+  return data.content;
+}
 
 export interface ActivityLogEntry {
   id: string;

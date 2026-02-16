@@ -9,6 +9,27 @@
   display: none;
 }
 
+/* ===== Custom Scrollbar (GitHub Dark style) ===== */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #30363d;
+  border: 2px solid #0d1117; /* matches bg */
+  border-radius: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #8b949e;
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #30363d transparent;
+}
+
 /* ===== Heartbeat button pulse ===== */
 @keyframes heartbeat-pulse {
   0%, 100% {
@@ -234,3 +255,138 @@
 .bn-container[data-blocknote-zyga] .bn-inline-content:has(> .ProseMirror-trailingBreak):before {
   font-style: normal !important;
 }
+
+/* Markdown Preview Typography — matched to BlockNote editor computed styles */
+.prose {
+  color: #c9d1d9;
+  line-height: 1.5;
+}
+.prose h1 {
+  font-size: 3rem;       /* 48px — exact BlockNote H1 */
+  font-weight: 700;
+  line-height: 1.5;      /* 72px */
+  margin-top: 6px;
+  margin-bottom: 6px;
+  color: #ffffff;
+}
+.prose h2 {
+  font-size: 2rem;       /* 32px — exact BlockNote H2 */
+  font-weight: 700;
+  line-height: 1.5;      /* 48px */
+  margin-top: 6px;
+  margin-bottom: 6px;
+  color: #ffffff;
+}
+.prose h3 {
+  font-size: 1.3rem;     /* ~20.8px — exact BlockNote H3 */
+  font-weight: 700;
+  line-height: 1.5;      /* ~31.2px */
+  margin-top: 6px;
+  margin-bottom: 6px;
+  color: #ffffff;
+}
+.prose h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  color: #e6edf3;
+}
+.prose p {
+  font-size: 1rem;       /* 16px — exact BlockNote paragraph */
+  line-height: 1.5;      /* 24px */
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.prose ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left: 1.5rem;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.prose ol {
+  list-style-type: decimal;
+  list-style-position: outside;
+  margin-left: 1.5rem;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.prose li {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 3px;
+}
+.prose a {
+  color: #58a6ff;
+}
+.prose a:hover {
+  text-decoration: underline;
+}
+.prose blockquote {
+  border-left: 4px solid #4b5563;
+  padding-left: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-style: italic;
+  color: #8b949e;
+  margin-bottom: 1rem;
+}
+.prose pre {
+  background-color: #161b22;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  border: 1px solid #30363d;
+}
+.prose code {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.875rem;
+  background-color: rgba(31, 41, 55, 0.5);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  color: #d1d5db;
+}
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+  color: #d1d5db;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.prose th {
+  border: 1px solid #30363d;
+  padding: 0.5rem;
+  background-color: #161b22;
+  font-weight: 600;
+  text-align: left;
+}
+.prose td {
+  border: 1px solid #30363d;
+  padding: 0.5rem;
+}
+.prose hr {
+  border-top: 1px solid #30363d;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.prose img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #30363d;
+}
+.prose strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+.prose em {
+  font-style: italic;
+}
+
